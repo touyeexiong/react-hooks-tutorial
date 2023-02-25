@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "./useForm";
 import { Hello } from "./Hello";
+import { useFetch } from "./useFetch";
 
 const App = () => {
   const [values, handleChange] = useForm({
@@ -8,33 +9,16 @@ const App = () => {
     password: '',
     firstName: ''
   });
+  const [count, setCount] = useState(0)
+    const {data, loading} = useFetch(`http://numbersapi.com/${count}/trivia`)
 
-  const [showHello, setShowHello] = useState(true);
-
-  // useEffect(() => {
-  //     const onMouseMove = e => {
-  //       console.log(e);
-  //     };
-  //     window.addEventListener('mousemove', onMouseMove)
-
-  //     return () => {
-  //       window.removeEventListener('mousemove', onMouseMove)
-  //     };
-  // }, []);
-  // dependency array
-
-  useEffect(() => {
-    console.log('mount1');
-    
-  }, [])
-
-  useEffect(() => {
-    console.log('mount2');
-    
-  }, [])
+  // http://numbersapi.com/43/trivia
 
   return (
     <div>
+      <div>{!data ? "loading..." : data} </div>
+      <div>count: {count}</div>
+      <button onClick={() => setCount(c => c + 1)}>increment</button>
       <>
         {/* <button onClick={() => setShowHello(!showHello)}>Toggle</button> */}
         {/* {showHello && <Hello />} */}
