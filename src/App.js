@@ -9,8 +9,14 @@ const App = () => {
     password: '',
     firstName: ''
   });
-  const [count, setCount] = useState(0)
+    const [count, setCount] = useState(() => 
+      JSON.parse(localStorage.getItem('count')));
     const {data, loading} = useFetch(`http://numbersapi.com/${count}/trivia`)
+
+    useEffect(() => {
+      localStorage.setItem('count', JSON.stringify(count))
+    }, [count])
+    // now every time the count changes, it will be stored in localStorage
 
   // http://numbersapi.com/43/trivia
 
