@@ -10,22 +10,34 @@ const App = () => {
   });
 
   const [showHello, setShowHello] = useState(true);
+
   // useEffect(() => {
-  //   console.log('render');
+  //     const onMouseMove = e => {
+  //       console.log(e);
+  //     };
+  //     window.addEventListener('mousemove', onMouseMove)
 
-  //   return () => {
-  //     console.log('unmount');
-      
-  //   }
-
+  //     return () => {
+  //       window.removeEventListener('mousemove', onMouseMove)
+  //     };
   // }, []);
   // dependency array
+
+  useEffect(() => {
+    console.log('mount1');
+    
+  }, [])
+
+  useEffect(() => {
+    console.log('mount2');
+    
+  }, [])
 
   return (
     <div>
       <>
-        <button onClick={() => setShowHello(!showHello)}>Toggle</button>
-        {showHello && <Hello />}
+        {/* <button onClick={() => setShowHello(!showHello)}>Toggle</button> */}
+        {/* {showHello && <Hello />} */}
 
         <input
           name="email"
